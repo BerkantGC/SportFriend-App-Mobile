@@ -30,6 +30,8 @@ const ChangePasswordStyle = StyleSheet.create({
     input: {
         backgroundColor: 'white',
         height: 35,
+        borderRadius: 5,
+        borderWidth: 2,
     },
     btn: {
         marginTop: 20,
