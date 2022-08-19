@@ -1,15 +1,28 @@
 import React, {useState, useEffect} from "react";
-import { Alert, View, Text, SafeAreaView, StyleSheet, Dimensions, Image, TouchableOpacity} from "react-native";
+import { Alert, View, Text, SafeAreaView, StyleSheet, Dimensions, Image, TouchableOpacity, Modal, TextInput} from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
+import ChangePassword from "../components/ChangePassword/ChangePassword";
 
 const baseUrl = "http://192.168.1.80:8080/"
+
+//To Convert password to dots(.)
+const toPassword = (password) => {
+    let newPassword = [];
+    for(let i = 0; i<password.length; i++){
+       newPassword[i] = "."
+    }
+    return newPassword.join(" ");
+}
+
 export default function(props) {  
     const [profileData, setProfileData] = useState(null);
-    const [isLoading, loadingUpdate] = useState(true);
+    const [modalVisible, modalVisibleUpdate] = useState(false);
 
+    const [isLoading, loadingUpdate] = useState(true);
+    
     async function fetchProfileData(){
         loadingUpdate(true)
         const token = await AsyncStorage.getItem("@token")
@@ -24,12 +37,20 @@ export default function(props) {
         fetchProfileData();
     }, [])
 
+    // To use change visibility in child component
+    function closeModalFromParent() {
+    modalVisibleUpdate({ modalVisible: false });
+  };
+
     return(
         <SafeAreaView>
             {
                 isLoading ? null 
                 :
                 <View style={{backgroundColor: '#212630', height: Dimensions.get("window").height}}>
+                    <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={()=> modalVisibleUpdate(!modalVisible)}>
+                        <ChangePassword navigation={props.navigation} modalVisibleUpdate={closeModalFromParent}/>
+                    </Modal>
                     <View style={ProfileStyle.upperside}>
                         <View style={ProfileStyle.user_display}>
                             <Image style={{width: 120, height: 120}}  source={require("../images/profile-icon.png")}/>
@@ -38,29 +59,53 @@ export default function(props) {
                             <LogoutButton navigation={props.navigation}/>
                         </View>
                     </View>
+                    <View style={ProfileStyle.detail_info}>
+                        <View style={ProfileStyle.detail_contaier}>
+                            <Text style={ProfileStyle.detail_txt}>Email: </Text>
+                            <Text style={ProfileStyle.detail_txt}>{profileData.email}</Text>
+                            <TouchableOpacity style={{backgroundColor: '#212630', marginRight: 10}}> 
+                                <View style={{backgroundColor: '#212630', width: '200%', height: '200%',alignItems: 'center', justifyContent: 'center'}}>                               
+                                    <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={ProfileStyle.detail_contaier}>
+                            <Text style={ProfileStyle.detail_txt}>Password: </Text>    
+                            <Text style={ProfileStyle.detail_txt}>{toPassword(profileData.password).slice(0,15)}</Text>
+                            <TouchableOpacity onPress={()=>modalVisibleUpdate(!modalVisible)} style={{backgroundColor: '#212630', marginRight: 10}}> 
+                                <View style={{backgroundColor: '#212630', width: '200%', height: '200%',alignItems: 'center', justifyContent: 'center'}}>                               
+                                    <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={ProfileStyle.detail_contaier}>
+                            <Text style={ProfileStyle.detail_txt}>Roles: </Text>
+                            {profileData.roles.map(item => {
+                                return(<Text style={ProfileStyle.detail_txt} key={item.role_id}>{item.roleName}</Text>)
+                                })}
+                        </View>
+                    </View>
                     <View style={ProfileStyle.bottomside}>
                         <TouchableOpacity>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 70, height: 70}} tintColor='white' source={require("../images/favorites.png")}/>
+                            <Image style={{width: 60, height: 60}} tintColor='white' source={require("../images/favorites.png")}/>
                             <Text style={{color: 'white', fontSize: 15}}>Favorites</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 60, height: 60}} tintColor='white' source={require("../images/add-game.png")}/>
+                            <Image style={{width: 55, height: 55}} tintColor='white' source={require("../images/add-game.png")}/>
                             <Text style={{color: 'white', fontSize: 15}}>Add Game</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 60, height: 60}} tintColor='white' source={require("../images/comments.png")}/>
+                            <Image style={{width: 55, height: 55}} tintColor='white' source={require("../images/comments.png")}/>
                             <Text style={{color: 'white', fontSize: 15}}>Comments</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View>
-                        <Image source={{uri: "https://img.gamesatis.com/showcase/735/lol-hesap-64628.jpg"}} style={{width: Dimensions.get("window").width/1, height: 70, borderRadius: 5}}/>
-                    </View>
+                    
                 </View>
             }
         </SafeAreaView>
@@ -84,7 +129,7 @@ const ProfileStyle = StyleSheet.create({
         backgroundColor: '#212630',
         height: Dimensions.get("window").height/4,
         flexDirection:'row',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
     },
     button_container: {
@@ -96,5 +141,24 @@ const ProfileStyle = StyleSheet.create({
         marginHorizontal: 5,
         padding: 10,
         borderRadius: 15,
+    },
+    detail_info: {
+        alignItems: 'center',
+        justifyContent: 'flex-start'
+    },
+    detail_contaier: {
+        backgroundColor: '#171a21',
+        marginVertical: 5,
+        padding: 10,
+        borderRadius: 5,
+        width: '95%',
+        height: 50,
+        alignItems: 'center',
+        flexDirection : 'row',
+        justifyContent: 'space-between'
+    },
+    detail_txt:{
+        color: 'white',
+        fontSize: 15,
     }
 })
