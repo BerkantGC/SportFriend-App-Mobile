@@ -25,6 +25,7 @@ const TabBarStyle=StyleSheet.create({
         fontSize: 14,
       },
       tab_icon: {
+        marginLeft: 10,
         width: 180,
         height:30
       }
