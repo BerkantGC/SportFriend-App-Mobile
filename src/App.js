@@ -14,7 +14,7 @@ const App = ()=> {
                 <Stack.Screen options={{headerShown:false}} name="Main" component={Main}/>
                 <Stack.Screen options={{headerShown:false}} name="Login" component={Login}/>
                 <Stack.Screen options={{headerShown:false}} name="Profile" component={Profile}/>
-
+                
             </Stack.Navigator>
         </NavigationContainer>
     )

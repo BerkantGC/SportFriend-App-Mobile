@@ -5,7 +5,6 @@ import TabBarStyle from "./TabBarStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from '@react-navigation/native';
 
-
 const TabBar = ({navigation}) => {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
