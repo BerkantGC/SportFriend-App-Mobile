@@ -63,8 +63,8 @@ export default function(props) {
                         <View style={ProfileStyle.detail_contaier}>
                             <Text style={ProfileStyle.detail_txt}>Email: </Text>
                             <Text style={ProfileStyle.detail_txt}>{profileData.email}</Text>
-                            <TouchableOpacity style={{backgroundColor: '#212630', marginRight: 10}}> 
-                                <View style={{backgroundColor: '#212630', width: '200%', height: '200%',alignItems: 'center', justifyContent: 'center'}}>                               
+                            <TouchableOpacity style={{backgroundColor: '#212630', marginRight: 5}}> 
+                                <View style={{backgroundColor: '#212630'}}>                               
                                     <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
                                 </View>
                             </TouchableOpacity>
@@ -72,8 +72,8 @@ export default function(props) {
                         <View style={ProfileStyle.detail_contaier}>
                             <Text style={ProfileStyle.detail_txt}>Password: </Text>    
                             <Text style={ProfileStyle.detail_txt}>{toPassword(profileData.password).slice(0,15)}</Text>
-                            <TouchableOpacity onPress={()=>modalVisibleUpdate(!modalVisible)} style={{backgroundColor: '#212630', marginRight: 10}}> 
-                                <View style={{backgroundColor: '#212630', width: '200%', height: '200%',alignItems: 'center', justifyContent: 'center'}}>                               
+                            <TouchableOpacity onPress={()=>modalVisibleUpdate(!modalVisible)} style={{backgroundColor: '#212630', marginRight: 5}}> 
+                                <View style={{backgroundColor: '#171a21',alignItems: 'center', justifyContent: 'center'}}>                               
                                     <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
                                 </View>
                             </TouchableOpacity>
