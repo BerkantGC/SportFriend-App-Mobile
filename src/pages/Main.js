@@ -39,7 +39,7 @@ const Main = (props) => {
   const renderItem = (({item}) => {
     const imageUrl = baseUrl + "images/" + item.imageUrl;
     return( 
-    <TouchableOpacity onPress={null} style={styles.each_game_container}>
+    <TouchableOpacity onPress={()=>props.navigation.navigate("Details", item.id)} style={styles.each_game_container}>
       <Image style={styles.images} source={{uri: imageUrl}}/>
       <Text style={styles.game_titles}>{item.gameName}</Text>
     </TouchableOpacity>
