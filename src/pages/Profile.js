@@ -86,7 +86,7 @@ export default function(props) {
                         </View>
                     </View>
                     <View style={ProfileStyle.bottomside}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate("Favorites", profileData)}>
                             <View style={ProfileStyle.button_container}>
                             <Image style={{width: 60, height: 60}} tintColor='white' source={require("../images/favorites.png")}/>
                             <Text style={{color: 'white', fontSize: 15}}>Favorites</Text>
