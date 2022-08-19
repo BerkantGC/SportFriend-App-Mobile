@@ -77,7 +77,7 @@ const styles = StyleSheet.create(
       width: "45%",
       margin: 10,
       height: Dimensions.get("window").height/2.5,
-      justifyContent: "space-between",
+      justifyContent: "space-around",
       backgroundColor: "#212630",
       borderRadius: 10,
       paddingBottom: 5,
@@ -86,6 +86,7 @@ const styles = StyleSheet.create(
     images: {
       width: "100%",
       height: "85%",
+      marginTop: -8,
       borderRadius: 10,
       resizeMode: "cover"
     },
