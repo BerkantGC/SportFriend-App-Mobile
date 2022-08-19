@@ -13,7 +13,7 @@ import {
   Button,
 } from 'react-native';
 
-const baseUrl = "http://192.168.1.79:8080/"
+const baseUrl = "http://192.168.1.80:8080/"
 
 import axios from 'axios';
 

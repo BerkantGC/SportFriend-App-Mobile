@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
 
-const baseUrl = "http://192.168.1.79:8080/"
+const baseUrl = "http://192.168.1.80:8080/"
 export default function(props) {  
     const [profileData, setProfileData] = useState(null);
     const [isLoading, loadingUpdate] = useState(true);

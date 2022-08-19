@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 
-const baseUrl = "http://192.168.1.79:8080/";
+const baseUrl = "http://192.168.1.80:8080/";
 
 async function removeToken()
 {

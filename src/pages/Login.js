@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { SafeAreaView, TextInput, View, Text, StyleSheet, Dimensions, TouchableOpacity} from "react-native";
 
-const baseUrl = "http://192.168.1.79:8080/";
+const baseUrl = "http://192.168.1.80:8080/";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
