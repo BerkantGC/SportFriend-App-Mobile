@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlight, TouchableOpacity } from "react-native";
 import axios from "axios";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const baseUrl = "http://192.168.1.80:8080/";
 
@@ -29,24 +30,81 @@ export default function(props){
             imageUrl = baseUrl + "images/" + gameData.imageUrl;
         }
     return(
-        <View>
+        <ScrollView style={styles.container}>
            {gameData !== null && 
            <View>
                 <View>
                     <Image style={styles.image} source={{uri: imageUrl}}/>
                 </View>
-                <Text>{gameData.description}</Text>
-                <Text>{gameData.year}</Text>
-                <Text>{gameData.views}</Text>
+                <View style={styles.title_container}>
+                    <Text adjustsFontSizeToFit={true} style={styles.title}>{gameData.gameName}</Text>
+                </View>
+                <View style={styles.action_btn}>
+                    <TouchableOpacity>
+                        <Icon name="logo-youtube" style={{marginHorizontal: 15}} size={50} color="white"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Icon name="star-outline" style={{marginHorizontal: 15}} size={50} color="white"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Icon name="cart-outline" style={{marginHorizontal: 15}} size={50} color="white"/>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.desc_container}>
+                    <Text style={{fontWeight: 'bold', fontSize: 16, color: 'white', marginBottom: 15}}>Description: </Text>
+                    <Text style={{color: 'white',}} adjustsFontSizeToFit={true}>{gameData.description}</Text>
+                </View>
+                <View style={styles.details_container}>
+
+                    <Text style={{color: 'white'}}>Product Id: {gameData.id}</Text>
+                    <Text style={{color: 'white'}}>Views: {gameData.views}</Text>
+                    <Text style={{color: 'white'}}>Year: {gameData.year}</Text>
+                </View>
            </View>
             }
-        </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#212630',
+        flex: 1,
+    },
     image: {
-        width: Dimensions.get("screen").width,
+        width: "100%",
         height: Dimensions.get("screen").height/3,
+    },
+    title_container: {
+        alignItems: 'center',  
+    },
+    title: {
+        marginTop: 20,
+        color: 'white',
+        fontSize: 40,
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    action_btn: {
+        marginVertical: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    desc_container: {
+        backgroundColor: '#171a21',
+        padding: 10,
+        marginTop: 15,
+        marginHorizontal: 10,
+        justifyContent: 'space-around',
+        borderRadius: 10,
+    },
+    details_container: {
+        backgroundColor: '#171a21',
+        marginHorizontal: 10,
+        marginTop: 15,
+        borderRadius: 10,
+        flexDirection: 'row',
+        padding: 10,
+        justifyContent: 'space-between'
     }
 })

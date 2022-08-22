@@ -7,7 +7,7 @@ const TabBarStyle=StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#212630',
-        width: Dimensions.get("window").width,
+        width: '100%'
       },
       login_btn: {
         width: 120,
