@@ -92,7 +92,7 @@ export default function(props) {
                             <Text style={{color: 'white', fontSize: 15}}>Favorites</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate("AddGame")}>
                             <View style={ProfileStyle.button_container}>
                             <Image style={{width: 55, height: 55}} tintColor='white' source={require("../images/add-game.png")}/>
                             <Text style={{color: 'white', fontSize: 15}}>Add Game</Text>

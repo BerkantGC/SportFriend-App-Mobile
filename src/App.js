@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import GameDetails from "./pages/GameDetails";
+import AddGame from "./pages/AddGame";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const App = ()=> {
                 <Stack.Screen options={{headerShown:false}} name="Profile" component={Profile}/>
                 <Stack.Screen options={{headerShown:false}} name="Favorites" component={Favorites}/>
                 <Stack.Screen options={{headerShown:false}} name="Details" component={GameDetails}/>
+                <Stack.Screen options={{headerShown:false}} name="AddGame" component={AddGame}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
