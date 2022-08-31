@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import GameDetails from "./pages/GameDetails";
 import AddGame from "./pages/AddGame";
+import Browser from "./components/Browser/Browser";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const App = ()=> {
                 <Stack.Screen options={{headerShown:false}} name="Favorites" component={Favorites}/>
                 <Stack.Screen options={{headerShown:false}} name="Details" component={GameDetails}/>
                 <Stack.Screen options={{headerShown:false}} name="AddGame" component={AddGame}/>
+                <Stack.Screen name="Browser" component={Browser}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
