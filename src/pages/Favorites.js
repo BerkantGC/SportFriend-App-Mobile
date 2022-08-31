@@ -9,8 +9,12 @@ const FavoriteGames = ({game}) => {
     const imageUrl = baseUrl + "images/" + game.imageUrl;
     return(
         <View style={FavoriteStyle.each_container}>
-            <Image source={{uri: imageUrl}} style={{resizeMode: 'cover', width: Dimensions.get("window").height/4, height: Dimensions.get("window").height/6}} />
-            <Text style={{color:'white', textAlign: 'left'}}>{game.gameName}</Text>
+            <View style={FavoriteStyle.image_container}>
+            <Image source={{uri: imageUrl}} style={{resizeMode: 'cover', width: '100%', height: '100%'}}/>
+            </View>
+            <View style={FavoriteStyle.title_container}>
+                <Text style={{color:'white', textAlign: 'left', }}>{game.gameName}</Text>
+            </View>
             <Icon name="star" solid size={30} color='white'/>
         </View>
     )
@@ -35,11 +39,24 @@ const FavoriteStyle = StyleSheet.create({
         backgroundColor: '#212630'
     },
     each_container: {
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height/5,
         backgroundColor: '#171a21',
         marginVertical: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
 
+    },
+    image_container:{
+        width: '35%',
+        height: '98%',
+        backgroundColor: 'white'
+    },
+    title_container: {
+        width: '40%',
+        height: '98%',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

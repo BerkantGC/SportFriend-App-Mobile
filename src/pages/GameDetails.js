@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlight, TouchableOpacity, Linking } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlight, TouchableOpacity, Linking, Alert } from "react-native";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -12,6 +13,18 @@ export default function(props){
     const gameDetailId = props.route.params;
 
     const [gameData, setGameData] = useState(null)
+    const [token, setToken] = useState(null);
+    const [username, setUsername] = useState(null);
+  
+    useFocusEffect(
+      React.useCallback(() => {
+        async function getToken(){
+          await AsyncStorage.getItem("@username").then(res => setUsername(JSON.parse(res)))
+          await AsyncStorage.getItem("@token").then(res=>setToken(JSON.parse(res)))
+          }
+          getToken();
+      }, [])
+    );
 
     const fetchData = async() => {
         await axios.get(baseUrl + "game-details/" + gameDetailId).then(
@@ -26,6 +39,35 @@ export default function(props){
           fetchData();
         }, [])
       );
+
+      function openYoutubeLink(){
+        props.navigation.navigate("Browser",
+        {
+            url: gameData.youtubeTrailer
+        })
+      }
+      const handleAddFavorites = async(gameName) => {
+        if(username === null || token ===null){
+            Alert.alert("User not logged in!");
+        }
+        else{
+            const userAndGame = {
+                "username" : username,
+                "favorites": {
+                    "favoriteGames":[{
+                        "gameName": gameName
+                    }]
+                }
+            }
+
+            await axios.put(baseUrl + "add_favorite/", userAndGame, {headers: {"Authorization" : `Bearer ${token}`}})
+            .then(res =>{ 
+                alert("Added to your favorites");
+                setIsFavorite(true);
+            })
+            .catch(err => alert(err));
+        }
+      }
       let imageUrl;
       if(gameData !== null){
             imageUrl = baseUrl + "images/" + gameData.imageUrl;
@@ -42,10 +84,10 @@ export default function(props){
                     <Text adjustsFontSizeToFit={true} style={styles.title}>{gameData.gameName}</Text>
                 </View>
                 <View style={styles.action_btn}>
-                    <TouchableOpacity onPress={()=>Linking.openURL(gameData.youtubeTrailer)}>
+                    <TouchableOpacity onPress={openYoutubeLink}>
                         <Icon name="logo-youtube" style={{marginHorizontal: 15}} size={50} color="white"/>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleAddFavorites(gameData.gameName)}>
                         <Icon name="star-outline" style={{marginHorizontal: 15}} size={50} color="white"/>
                     </TouchableOpacity>
                     <TouchableOpacity>
