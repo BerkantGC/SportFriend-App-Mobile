@@ -6,7 +6,7 @@ import axios from "axios";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
 import ChangePassword from "../components/ChangePassword/ChangePassword";
 
-const baseUrl = "http://192.168.1.80:8080/"
+const baseUrl = "https://gamessatis-backend.herokuapp.com/"
 
 //To Convert password to dots(.)
 const toPassword = (password) => {

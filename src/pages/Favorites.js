@@ -3,7 +3,7 @@ import { View, Text, Image, ScrollView, StyleSheet, Dimensions} from "react-nati
 
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-const baseUrl = "http://192.168.1.80:8080/"
+const baseUrl = "https://gamessatis-backend.herokuapp.com/"
 
 const FavoriteGames = ({game}) => {
     const imageUrl = baseUrl + "images/" + game.imageUrl;

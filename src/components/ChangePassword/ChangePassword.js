@@ -6,7 +6,7 @@ import { Text, TextInput, View, TouchableOpacity, Image, BackHandler, Alert } fr
 
 import ChangePasswordStyle from "./ChangePasswordStyle";
 
-const baseUrl = "http://192.168.1.80:8080/"
+const baseUrl = "https://gamessatis-backend.herokuapp.com/"
 
 const removeItem= async() => {
     await AsyncStorage.removeItem("@token")
@@ -37,7 +37,7 @@ export default function(props){
 
     return(
         <View style={ChangePasswordStyle.centerView}>
-            <TouchableOpacity onPress={props.modalVisibleUpdate} style={{position: 'absolute', right: 20, top: 20}} >
+            <TouchableOpacity onPress={props.modalVisibleUpdate} style={{position: 'absolute', right: 20, top: 40}} >
                 <Image style={{width: 25, height: 25}} tintColor="white" source={require("../../images/close-button.png")}/>
             </TouchableOpacity>
             <View style={ChangePasswordStyle.container}>

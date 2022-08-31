@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlig
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const baseUrl = "http://192.168.1.80:8080/";
+const baseUrl = "https://gamessatis-backend.herokuapp.com/";
 
 import { useFocusEffect } from '@react-navigation/native';
 
