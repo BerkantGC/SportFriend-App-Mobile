@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, ScrollView, StyleSheet, Dimensions} from "react-native";
-
+import BackButton from "../components/BackButton/BackButton"
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const baseUrl = "https://gamessatis-backend.herokuapp.com/"
@@ -22,6 +22,7 @@ export default function(props){
 
     return(
         <View style={FavoriteStyle.container}>
+            <BackButton navigation={props.navigation}/>
             <ScrollView>
                 {favorites.map(game =>{return(<FavoriteGames key={game.id} game={game}/>)})}
             </ScrollView>

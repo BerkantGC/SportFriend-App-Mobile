@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlight, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, TouchableHighlight, TouchableOpacity, Linking } from "react-native";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const baseUrl = "https://gamessatis-backend.herokuapp.com/";
 
 import { useFocusEffect } from '@react-navigation/native';
+import BackButton from "../components/BackButton/BackButton";
 
 export default function(props){
     const gameDetailId = props.route.params;
@@ -33,6 +34,7 @@ export default function(props){
         <ScrollView style={styles.container}>
            {gameData !== null && 
            <View>
+            <BackButton navigation={props.navigation}></BackButton>
                 <View>
                     <Image style={styles.image} source={{uri: imageUrl}}/>
                 </View>
@@ -40,7 +42,7 @@ export default function(props){
                     <Text adjustsFontSizeToFit={true} style={styles.title}>{gameData.gameName}</Text>
                 </View>
                 <View style={styles.action_btn}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>Linking.openURL(gameData.youtubeTrailer)}>
                         <Icon name="logo-youtube" style={{marginHorizontal: 15}} size={50} color="white"/>
                     </TouchableOpacity>
                     <TouchableOpacity>

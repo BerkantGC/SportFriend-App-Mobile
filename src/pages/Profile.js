@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
 import ChangePassword from "../components/ChangePassword/ChangePassword";
+import BackButton from "../components/BackButton/BackButton";
 
 const baseUrl = "https://gamessatis-backend.herokuapp.com/"
 
@@ -48,6 +49,7 @@ export default function(props) {
                 isLoading ? null 
                 :
                 <View style={{backgroundColor: '#212630', height: Dimensions.get("window").height}}>
+                    <BackButton navigation={props.navigation}/>
                     <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={()=> modalVisibleUpdate(!modalVisible)}>
                         <ChangePassword navigation={props.navigation} modalVisibleUpdate={closeModalFromParent}/>
                     </Modal>
@@ -64,7 +66,7 @@ export default function(props) {
                             <Text style={ProfileStyle.detail_txt}>Email: </Text>
                             <Text style={ProfileStyle.detail_txt}>{profileData.email}</Text>
                             <TouchableOpacity style={{backgroundColor: '#212630', marginRight: 5}}> 
-                                <View style={{backgroundColor: '#212630'}}>                               
+                                <View style={{backgroundColor: '#171a21', ßalignItems: 'center', justifyContent: 'center'}}>                               
                                     <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
                                 </View>
                             </TouchableOpacity>
