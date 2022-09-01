@@ -15,7 +15,7 @@ const FavoriteGames = (props) => {
             <View style={FavoriteStyle.title_container}>
                 <Text style={{color:'white', textAlign: 'left', }}>{props.game.gameName}</Text>
             </View>
-            <Icon name="star" solid size={30} color='white'/>
+            <Icon name="star" style={{marginRight: 10}} solid size={30} color='white'/>
         </TouchableOpacity>
     )
 } 
@@ -37,12 +37,13 @@ export default function(props){
 const FavoriteStyle = StyleSheet.create({
     container: {
         backgroundColor: '#212630',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flex: 1
     },
     each_container: {
         marginHorizontal: 5,
         width: 'auto',
-        height: Dimensions.get("window").height/5,
+        height: Dimensions.get("window").height/6,
         backgroundColor: '#171a21',
         marginVertical: 5,
         flexDirection: 'row',

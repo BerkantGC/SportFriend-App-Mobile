@@ -7,6 +7,7 @@ import LogoutButton from "../components/LogoutButton/LogoutButton";
 import ChangePassword from "../components/ChangePassword/ChangePassword";
 import BackButton from "../components/BackButton/BackButton";
 
+import Font from "react-native-vector-icons/FontAwesome5"
 const baseUrl = "https://gamessatis-backend.herokuapp.com/"
 
 //To Convert password to dots(.)
@@ -90,19 +91,19 @@ export default function(props) {
                     <View style={ProfileStyle.bottomside}>
                         <TouchableOpacity onPress={()=>props.navigation.navigate("Favorites", profileData)}>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 60, height: 60}} tintColor='white' source={require("../images/favorites.png")}/>
+                            <Font name="star" style={{marginTop: 5}} size={50} color="white"/>
                             <Text style={{color: 'white', fontSize: 15}}>Favorites</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>props.navigation.navigate("AddGame")}>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 55, height: 55}} tintColor='white' source={require("../images/add-game.png")}/>
+                            <Font name="gamepad" style={{marginTop: 5}} size={50} color="white"/>
                             <Text style={{color: 'white', fontSize: 15}}>Add Game</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <View style={ProfileStyle.button_container}>
-                            <Image style={{width: 55, height: 55}} tintColor='white' source={require("../images/comments.png")}/>
+                            <Font name="comments" style={{marginTop: 5}} size={50} color="white"/>
                             <Text style={{color: 'white', fontSize: 15}}>Comments</Text>
                             </View>
                         </TouchableOpacity>
