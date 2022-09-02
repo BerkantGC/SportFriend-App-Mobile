@@ -61,7 +61,7 @@ export default function(props){
                     else(setError("check-password"))
                 }}>
                         <View style={ChangePasswordStyle.btn}>
-                            <Text style={ChangePasswordStyle.btn_txt}>LOGIN</Text>
+                            <Text style={ChangePasswordStyle.btn_txt}>CHANGE</Text>
                         </View>
                 </TouchableOpacity>
             </View>
