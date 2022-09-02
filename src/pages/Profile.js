@@ -67,8 +67,8 @@ export default function(props) {
                             <Text style={ProfileStyle.detail_txt}>Email: </Text>
                             <Text style={ProfileStyle.detail_txt}>{profileData.email}</Text>
                             <TouchableOpacity style={{backgroundColor: '#212630', marginRight: 5}}> 
-                                <View style={{backgroundColor: '#171a21', ßalignItems: 'center', justifyContent: 'center'}}>                               
-                                    <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
+                                <View style={{backgroundColor: '#171a21', alignItems: 'center', justifyContent: 'center'}}>                               
+                                    <Font name="edit" size={25} color="white" />
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -77,7 +77,7 @@ export default function(props) {
                             <Text style={ProfileStyle.detail_txt}>{toPassword(profileData.password).slice(0,15)}</Text>
                             <TouchableOpacity onPress={()=>modalVisibleUpdate(!modalVisible)} style={{backgroundColor: '#212630', marginRight: 5}}> 
                                 <View style={{backgroundColor: '#171a21',alignItems: 'center', justifyContent: 'center'}}>                               
-                                    <Image style={{width: 25, height: 25}} tintColor='white' source={require("../images/edit-icon.png")}/>
+                                <Font name="edit" size={25} color="white" />
                                 </View>
                             </TouchableOpacity>
                         </View>
